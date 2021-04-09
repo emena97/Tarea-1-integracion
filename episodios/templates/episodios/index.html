@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Temporadas Series</title>
+</head>
+<body>
+<div class="topnav" align="center">
+    <form action="search" method="POST">
+        {% csrf_token %}
+        <input type="text" placeholder="Search.." name="buscar">
+        <button type="submit">Submit</button>
+    </form>
+</div>
+{% if bb_seasons_list and bcs_seasons_list %}
+    <a> Temporadas Breaking Bad</a>
+    <ul>
+    {% for season in bb_seasons_list %}
+        <li><a href="/episodios/bb/temporadas/{{ season }}/">Temporada {{ season }}</a></li>
+    {% endfor %}
+    </ul>
+    <a> Temporadas Better Call Saul</a>
+    <ul>
+    {% for season in bcs_seasons_list %}
+        <li><a href="/episodios/bcs/temporadas/{{ season }}/">Temporada {{ season }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Error en carga de archivos</p>
+{% endif %}
+</body>
+</html>

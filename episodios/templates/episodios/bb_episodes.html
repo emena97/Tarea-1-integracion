@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{episode_title}}</title>
+</head>
+<body>
+<div class="topnav" align="center">
+    <form action="../../../search" method="POST">
+        {% csrf_token %}
+        <input type="text" placeholder="Search.." name="buscar">
+        <button type="submit">Submit</button>
+    </form>
+</div>
+{% if episode_id %}
+    <a> Información del Episodio</a>
+    <p>ID: {{episode_id}}</p>
+    <p>Titulo: {{episode_title}}</p>
+    <p>Temporada: {{episode_season}}</p>
+    <p>Número Episodio: {{episode_number}}</p>
+    <p>Fecha de Estreno: {{episode_date}}</p>
+    <p>Serie: {{episode_series}}</p>
+
+    <a> Personajes presentes en episodio:</a>
+        <ul>
+            {% for character in episode_characters %}
+                <li><a href="/episodios/{{character}} "> {{character}} </a></li>
+            {% endfor %}
+        </ul>
+{% else %}
+    <p>Error en carga de archivos</p>
+    <p>Volver al inicio</p>
+    <a href="/episodios"> Index </a>
+{% endif %}
+
+</body>
+</html>

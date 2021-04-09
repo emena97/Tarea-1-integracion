@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{character_name}}</title>
+</head>
+<body>
+<div class="topnav" align="center">
+    <form action="search" method="POST">
+        {% csrf_token %}
+        <input type="text" placeholder="Search.." name="buscar">
+        <button type="submit">Submit</button>
+    </form>
+</div>
+{% if character_name %}
+    <h1>Información del Personaje</h1>
+    <img src={{character_img}} height="250" width="200" alt="Character Image">
+    <p>{{character_name}}</p>
+    <p> Character Occupations:</p>
+    {% for ocu in character_occupation_list %}
+        <ul>
+            <p>{{ocu}}</p>
+        </ul>
+    {%endfor%}
+    <p>Status: {{character_status}}</p>
+    <p>Nickname: {{character_nickname}}</p>
+    <p>Breaking Bad Season Appearances</p>
+    {% for ap in character_bb_appearances %}
+        <ul>
+            <li><a href="/episodios/bb/temporadas/{{ ap }}/">Temporada {{ ap }}</a></li>
+        </ul>
+    {%endfor%}
+    <p>Better Call Saul Season Appearances</p>
+    {% for ap in character_bcs_appearances %}
+        <ul>
+            <li><a href="/episodios/bcs/temporadas/{{ ap }}/">Temporada {{ ap }}</a></li>
+        </ul>
+    {%endfor%}
+    <p>Portrayed by: {{character_portrayed}}</p>
+    <p>Category: {{character_category}}</p>
+    <p>Quotes by {{character_name}}:</p>
+    {% for quote in quotes %}
+        <ul>
+            <p>{{quote}}</p>
+        </ul>
+    {%endfor%}
+{% else %}
+    <p>Error en carga de archivos</p>
+    <p>Volver al inicio</p>
+    <a href="/episodios"> Index </a>
+{% endif %}
+</body>
+</html>
+
+

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Better Call Saul</title>
+</head>
+<body>
+<div class="topnav" align="center">
+    <form action="../../../search" method="POST">
+        {% csrf_token %}
+        <input type="text" placeholder="Search.." name="buscar">
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+{% if episode_list %}
+    <a> Episodios Temporada {{season_id}} Better Call Saul</a>
+    <ul>
+    {% for episode in episode_list %}
+        <li><a href="/episodios/bcs/temporadas/{{ season_id }}/{{ episode }}">{{episode}}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Error en carga de archivos</p>
+    <p>Volver al inicio</p>
+    <a href="/episodios"> Index </a>
+{% endif %}
+
+</body>
+</html>

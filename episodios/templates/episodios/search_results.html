@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+</head>
+<body>
+
+<div class="topnav" align="center">
+    <form action="search" method="POST">
+        {% csrf_token %}
+        <input type="text" placeholder="Search.." name="buscar">
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<h1>Search Results</h1>
+<ul>
+    {% for name in matching_names %}
+        <li><a href="/episodios/{{name}} "> {{name}} </a></li>
+    {% endfor %}
+</ul>
+<p>Volver al inicio</p>
+<a href="/episodios"> Index </a>
+</body>
+</html>
